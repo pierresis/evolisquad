@@ -1,0 +1,23 @@
+{
+  "name": "evolisquad",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cucumber": "./node_modules/.bin/cucumber-js ./features"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pierresis/evolisquad.git"
+  },
+  "author": "EvoliSquad",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pierresis/evolisquad/issues"
+  },
+  "homepage": "https://github.com/pierresis/evolisquad#readme",
+  "devDependencies": {
+    "cucumber": "^6.0.5"
+  }
+}
