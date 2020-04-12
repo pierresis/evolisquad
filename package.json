@@ -20,7 +20,8 @@
   "devDependencies": {
     "chai": "^4.2.0",
     "cucumber": "^6.0.5",
-    "mocha": "^7.1.1"
+    "mocha": "^7.1.1",
+    "sinon": "^9.0.2"
   },
   "dependencies": {
     "underscore": "^1.10.2"

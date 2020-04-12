@@ -15,8 +15,4 @@ describe('A Population', () => {
         // Then
         count.should.equal(10);
     });
-
-    it('should allow to ', () => {
-
-    });
 });
