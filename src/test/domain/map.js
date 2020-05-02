@@ -4,7 +4,7 @@ const should = require('chai').should();
 const sinon = require('sinon');
 const _ = require('underscore');
 
-const Map = require('../../main/domain/map');
+const { Map } = require('../../main/domain/map');
 
 describe('A Map', () => {
     const aBiomeFullOfGrass = () => ({
@@ -14,43 +14,37 @@ describe('A Map', () => {
     it('should be initialized with a Width, a Height and a Biome', () => {
         // Given
         const aBiome = aBiomeFullOfGrass();
-        const aMap = Map.of(10, 25, aBiome);
-
-        // When
-        const width = aMap.getWidth();
-        const height = aMap.getHeigth();
-        const biome = aMap.getBiome();
+        const aMap = new Map(10, 25, aBiome);
 
         // Then
-        expect(width).to.equal(10);
-        expect(height).to.equal(25);
-        expect(biome).to.equal(aBiome);
+        expect(aMap.width).to.equal(10);
+        expect(aMap.height).to.equal(25);
+        expect(aMap.biome).to.equal(aBiome);
     });
 
     it('should be initialied with a number of tiles equals to width x height', () => {
         // Given
         const width = 10;
         const height = 25;
-        const aMap = Map.of(width, height, aBiomeFullOfGrass());
+        const aMap = new Map(width, height, aBiomeFullOfGrass());
 
         // When
-        const tiles = aMap.getTiles();
-        const tilesCount = _.reduce(tiles, (accum, row) => accum + row.length, 0);
+        const tilesCount = _.reduce(aMap.tiles, (accum, row) => accum + row.length, 0);
 
         // Then
-        expect(tiles.length).to.equal(width);
-        expect(tiles[0].length).to.equal(height);
+        expect(aMap.tiles.length).to.equal(width);
+        expect(aMap.tiles[0].length).to.equal(height);
         expect(tilesCount).to.equal(width * height);
     });
 
     it('should infer its tile type from biome', () => {
          // Given
-         const aMap = Map.of(10, 10, aBiomeFullOfGrass());
-
+         const biome = aBiomeFullOfGrass();
+         
          // When
-         const tiles = aMap.getTiles();
+         const aMap = new Map(10, 10, biome);
 
          // Then
-        tiles.forEach(column => column.forEach(tile => expect(tile.type).to.equal('GRASS')));
+         aMap.tiles.forEach(column => column.forEach(tile => expect(tile.type).to.equal('GRASS')));
     });
 });

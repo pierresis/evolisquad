@@ -1,22 +1,20 @@
 const _ = require('underscore');
 
-module.exports = (() => {
-    const Map = (width, height, biome) => {
-        const tiles = _.range(width)
+const generateTiles = (width, height, biome) => {
+    return _.range(width)
             .map(() => _.range(height)
                 .map(() => biome.generateTileType()));
+};
 
-        return Object.freeze({
-            getWidth: () => width,
-            getHeigth: () => height,
-            getBiome: () => biome,
-            getTiles: () => tiles
-        });
-    };
-
-    const MapStaticAPI = {
-        of: Object.freeze(Map)
+class Map {
+    constructor(width, height, biome) {
+        this.width = width;
+        this.height = height;
+        this.biome = biome;
+        this.tiles = generateTiles(width, height, biome);
     }
+}
 
-    return Object.freeze(MapStaticAPI);
-})();
+module.exports = {
+    Map
+};

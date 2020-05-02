@@ -1,16 +1,13 @@
-module.exports = (() => {
-    const Population = (initialCount) => {
-        const individuals = Array(initialCount);
-
-        return Object.freeze({
-            getPopulationCount: () => individuals.length
-        });
-    };
-
-
-    const PopulationStaticAPI = {
-        of: Object.freeze(Population)
+class Population {
+    constructor(initialCount) {
+        this.individuals = Array(initialCount);
     }
 
-    return Object.freeze(PopulationStaticAPI);
-})();
+    get populationCount() {
+        return this.individuals.length;
+    }
+}
+
+module.exports = {
+    Population
+};
